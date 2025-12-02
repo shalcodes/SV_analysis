@@ -19,8 +19,7 @@ This repository contains a complete, reproducible workflow for **structural vari
 ├── annovar
 │   ├── humandb/             
 │          ├── clinvar_SV.txt
-│          ├── hg38_refGene.txt
-│          └── hg38_refGeneMrna.fa
+│          └── hg38_refGene.txt
 ├── pipeline.py            # main pipeline controller
 ├── sv_plot.py             # custom plotting utilities
 │
