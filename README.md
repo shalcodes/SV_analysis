@@ -1,7 +1,7 @@
 # Structural Variant (SV) Analysis Pipeline
 ### *VCF → AWK Parsing → De Novo Detection → BED/ClinVar Annotation → Python Visualisation*
 
-This repository contains a complete, reproducible workflow for **structural variant (SV) analysis** from a **Delly-generated VCF**, including:
+This repository contains a complete, reproducible workflow for **structural variant (SV) analysis** from a **Delly-generated VCF**, including:  
 ✔ SV extraction using AWK  
 ✔ De novo variant detection  
 ✔ ChrX-based parent inference & sex determination  
