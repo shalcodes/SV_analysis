@@ -26,23 +26,29 @@ This project demonstrates how to:
 # 📁 Repository Structure
 
 ```
-├── pipeline.py                 # Main script (orchestrates full workflow)
-├── scripts/
-│   ├── script.sh               # AWK-based DELLY VCF parser (SV extraction)
-│   ├── annotate_sv.py          # Annotation using BEDTools & Python
-│   └── bed.sh                  # Convert ANNOVAR refGene + ClinVar SV → BED
+├──DellyVariation.vcf              # Input VCF (example)
+├──pipeline.py                     # Main script (orchestrates full workflow)
+├── script.sh                      # AWK-based DELLY VCF parser (SV extraction)
+├── annotate_sv.py                 # Annotation using BEDTools & Python
+├── sv_plot.py                     # Generates plot from output csv and txt files
+├── bed.sh                         # Used to convert ANNOVAR refGene + ClinVar SV txt to BED
 │
-├── data/
-│   ├── annovar/humandb/        # ANN OVAR reference files (not included here)
-│   ├── bed_files/              # Generated BEDs (hg38_refGene.bed, exons, ClinVar)
-│   └── DellyVariation.vcf      # Input VCF (example)
+├── annovar/humandb/               # ANNOVAR and ClinVar reference files (.txt)
+│       └── hg38_refGene.txt       # ANNOVAR Human Reference Genes (Annotated)
+│       └── clinvar_SV.txt         # ClinVar Annotated Structural Variants with pathogenic link     
 │
-├── output/
-│   ├── processed/              # Generated .txt and .avinput files
-│   ├── stats/                  # Summary statistics
-│   └── figures/                # Plots
+├── output/                        # Created this to load the findings; alternatively remove the files within to generate new files after tweaking
+│      └── summary_stats.txt                          # Overall summary statistics
+│      └── SV_summary.txt                             # All the structural variants found in the file    
+│      └── denovo_variants_imprecise.txt              # de novo SVs in child sample (imprecise + precise reads)
+│      └── denovo_variants_precise.txt                # de novo SVs in child sample (precise reads only)
+│      └── SV_summary_annotated.csv                   # All SVs after annotation with ANNOVAR human gene database
+│      └── SV_summary_annotated_exonic.csv            # All SVs within exons (protein-coding regions)
+│      └── SV_summary_annotated_pathLink.csv          # All SVs with link to some pathogenic condition (ClinVar database as reference)
+│      └── denovo_variants_imprecise_annotated.csv    # de novo SVs after annotation (imprecise + precise reads)
+│      └── denovo_variants_precise_annotated.csv      # de novo SVs after annotation (precise reads only)
 │
-├── requirements.txt
+├── LICENSE
 └── README.md
 ```
 
