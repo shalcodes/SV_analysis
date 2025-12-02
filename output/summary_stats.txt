@@ -1,0 +1,86 @@
+=== Trio Summary===
+sample1 deviations:	1029
+sample2 deviations:	1037
+sample3 deviations:	3
+The sample with the least possible deviations is the child sample.
+
+
+=== Variant Read Count Summary ===
+Total variant reads:	17152
+Precise reads:	16493
+Imprecise reads:	659
+
+===Allele Structure Counts===
+Bi-allelic variants:	16470
+Multi-allelic variants:	0
+
+=== SNV / SV Counts===
+SNVs (Single Nucleotide Variants):	0
+SVs (Structural Variants):	16470
+
+===Variant Types Count===
+DEL	11071
+INS	5275
+DUP	124
+
+
+===Genotype Combination Counts (Parent1_Parent2_Child)===
+0/1_0/1_0/0	350
+0/1_0/1_0/1	634
+0/0_0/1_0/0	979
+0/0_0/1_0/1	999
+1/1_0/1_1/1	294
+0/1_1/1_0/1	304
+1/1_0/0_0/0	1
+0/0_1/1_0/1	366
+1/1_1/1_1/1	579
+1/1_0/0_0/1	376
+0/1_0/1_1/1	333
+0/1_0/0_0/0	997
+0/1_1/1_1/1	269
+0/1_0/0_0/1	937
+0/0_0/0_0/0	8724
+1/1_0/1_0/1	328
+
+
+===Variants per Chromosome===
+chr21	222
+chr12	794
+chr22	252
+chr13	612
+chr14	491
+chr15	424
+chrX	473
+chr16	435
+chr1	1255
+chr17	477
+chr2	1337
+chr18	451
+chr3	1158
+chr19	335
+chr4	1196
+chr5	1094
+chr6	1063
+chr7	928
+chr10	810
+chr8	825
+chr20	374
+chr11	781
+chr9	683
+
+
+==chrX Heterozygosity Analysis==
+Total chrX variants:	473
+ParentA (sample1, HG00512) het:	20
+ParentB (sample2, HG00513) het:	130
+Child   (sample3, HG00514) het:	120
+
+
+===Inferred Parents===
+Mother (likely):	sample2
+Father (likely):	sample1
+
+
+====Inferred Sex of Child (sample3)====
+Child = FEMALE (heterozygous chrX detected)
+

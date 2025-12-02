@@ -1,0 +1,32 @@
+chrom,start,end,ref,alt,Function,Gene,Priority,clinvar_germline_classification,clinvar_condition
+chr1,145865768,145865769,N,<INS>,intergenic,-,Low,Pathogenic,Radial aplasia-thrombocytopenia syndrome
+chr1,145889716,145889717,N,<INS>,intergenic,-,Low,Pathogenic,Radial aplasia-thrombocytopenia syndrome
+chr6,65362516,65362536,N,<DEL>,intronic,EYS,Medium,Likely pathogenic,Retinitis pigmentosa 25
+chr6,65364038,65371543,N,<DEL>,intronic,EYS,Medium,Likely pathogenic,Retinitis pigmentosa 25
+chr17,36893225,36893658,N,<DEL>,intronic,LHX1-DT,Medium,Pathogenic,Chromosome 17q12 deletion syndrome
+chr17,36989996,36989997,N,<INS>,intronic,AATF,Medium,Pathogenic,Chromosome 17q12 deletion syndrome
+chr17,37380859,37381891,N,<DEL>,intronic,ACACA;C17orf78,Medium,Pathogenic,Chromosome 17q12 deletion syndrome
+chr17,37418845,37422301,N,<DEL>,intronic,TADA2A,Medium,Pathogenic,Chromosome 17q12 deletion syndrome
+chr17,37678362,37678414,N,<DEL>,intergenic,-,Low,Pathogenic,Chromosome 17q12 deletion syndrome
+chr17,37724297,37724322,N,<DEL>,intronic,HNF1B,Medium,Pathogenic,Chromosome 17q12 deletion syndrome
+chr22,18990062,18990128,N,<DEL>,intronic,DGCR5,Medium,Pathogenic,DiGeorge syndrome
+chr22,19034865,19034884,N,<DEL>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,19112417,19113113,N,<DEL>,intronic,DGCR2,Medium,Pathogenic,DiGeorge syndrome
+chr22,19257695,19257728,N,<DEL>,intronic,CLTCL1,Medium,Pathogenic,DiGeorge syndrome
+chr22,19260392,19260580,N,<DEL>,intronic,CLTCL1,Medium,Pathogenic,DiGeorge syndrome
+chr22,19275928,19275953,N,<DEL>,intronic,CLTCL1,Medium,Pathogenic,DiGeorge syndrome
+chr22,19478568,19478586,N,<DEL>,intronic,UFD1,Medium,Pathogenic,DiGeorge syndrome
+chr22,19561240,19561241,N,<INS>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,19624271,19624289,N,<DEL>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,19627713,19627732,N,<DEL>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,19635480,19635481,N,<INS>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,19781975,19781976,N,<INS>,intronic,TBX1,Medium,Pathogenic,DiGeorge syndrome
+chr22,19925048,19925890,N,<DEL>,intronic,TXNRD2,Medium,Pathogenic,DiGeorge syndrome
+chr22,20108791,20108792,N,<INS>,intronic,DGCR8,Medium,Pathogenic,DiGeorge syndrome
+chr22,20355899,20361523,N,<DEL>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,20398910,20398926,N,<DEL>,intronic,ZNF74,Medium,Pathogenic,DiGeorge syndrome
+chr22,20596335,20599553,N,<DEL>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,20641000,20641001,N,<INS>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,20649058,20649059,N,<INS>,intergenic,-,Low,Pathogenic,DiGeorge syndrome
+chr22,20976159,20976180,N,<DEL>,intronic,AIFM3,Medium,Pathogenic,DiGeorge syndrome
+chrX,38279696,38279723,N,<DEL>,intronic,RPGR,Medium,Pathogenic,Retinitis pigmentosa 3

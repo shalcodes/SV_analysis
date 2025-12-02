@@ -1,0 +1,4 @@
+chrom,start,end,ref,alt,Function,Gene,Priority,clinvar_germline_classification,clinvar_condition
+chr7,57981233,57982205,N,<DEL>,intergenic,-,Low,-,-
+chr13,105744786,105747125,N,<DEL>,intronic,LINC00343,Medium,-,-
+chr14,105745717,105859942,N,<DEL>,intronic,MIR4507;MIR4537;MIR4538;MIR4539,Medium,-,-

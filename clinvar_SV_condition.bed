@@ -1,0 +1,32 @@
+chrom	start	end	condition	germline_classification
+chr1	145822587	146064587	Radial aplasia-thrombocytopenia syndrome	Pathogenic
+chr1	173844952	173845511	Leukoencephalopathy with brain stem and spinal cord involvement-high lactate syndrome	Uncertain significance
+chr2	73533554	73534900	Alstrom syndrome	Likely pathogenic
+chr2	110123182	110205164	Nephronophthisis 1	Pathogenic
+chr2	111940205	112029659	Retinitis pigmentosa 38	Pathogenic
+chr2	111940205	112055854	Retinitis pigmentosa 38	Pathogenic
+chr2	156326083	156327001	Intellectual developmental disorder with language impairment and early-onset DOPA-responsive dystonia-parkinsonism	Pathogenic
+chr2	168985203	168996234	Progressive familial intrahepatic cholestasis type 2	Uncertain significance
+chr4	92303869	92304842	Autosomal recessive spinocerebellar ataxia 18	Pathogenic
+chr4	106170998	106171368	Hypotonia, infantile, with psychomotor retardation and characteristic facies 3	Pathogenic
+chr4	106189203	106250467	Hypotonia, infantile, with psychomotor retardation and characteristic facies 3	Pathogenic
+chr5	70936229	70945206	Spinal muscular atrophy, type II	Pathogenic
+chr5	74695284	74702264	Sandhoff disease	Pathogenic
+chr6	65331371	65405465	Retinitis pigmentosa 25	Likely pathogenic
+chr8	132577633	132633537	Primary ciliary dyskinesia 19	Pathogenic
+chr9	101426458	101431155	Hereditary fructosuria	Pathogenic
+chr10	103094753	103096718	Hereditary spastic paraplegia 45	Pathogenic
+chr11	66521928	66524932	Bardet-Biedl syndrome 1	Pathogenic
+chr11	108358364	108376364	Ataxia-telangiectasia syndrome	Pathogenic
+chr12	102851253	102856067	Phenylketonuria	Pathogenic
+chr12	102865713	102871066	Phenylketonuria	Pathogenic
+chr12	102866370	102868040	Phenylketonuria	Pathogenic
+chr12	102866595	102866662	Phenylketonuria	Pathogenic
+chr12	102878710	102879609	Phenylketonuria	Uncertain significance
+chr13	41074134	41090164	Neurodevelopmental disorder with hypotonia, feeding difficulties, facial dysmorphism, and brain abnormalities	Uncertain significance
+chr14	21321856	21321865	Retinal dystrophy|not provided|Leber congenital amaurosis|Leber congenital amaurosis 6|Cone-rod dystrophy 13	Pathogenic/Likely pathogenic
+chr16	28485965	28486930	Neuronal ceroid lipofuscinosis 3	Pathogenic
+chr17	36486532	37745203	Chromosome 17q12 deletion syndrome	Pathogenic
+chr20	44621033	44621037	not provided|Severe combined immunodeficiency, autosomal recessive, T cell-negative, B cell-negative, NK cell-negative, due to adenosine deaminase deficiency	Pathogenic
+chr22	18985739	21081116	DiGeorge syndrome	Pathogenic
+chrX	38269073	38287133	Retinitis pigmentosa 3	Pathogenic

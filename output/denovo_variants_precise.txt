@@ -1,0 +1,1 @@
+CHROM	START	END	SV_TYPE	LENGTH_bp	Paired_end_PE	Split_end_SR	sample1_HG00512	sample2_HG00513	sample3_HG00514
