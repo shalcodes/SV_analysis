@@ -1,8 +1,8 @@
 # Structural Variant (SV) Analysis Pipeline  
-### *Hybrid Research + Developer Style — MSc Bioinformatics Project*
+### *MSc Bioinformatics Project*
 
 This repository contains a complete, end‑to‑end structural variant (SV) analysis workflow developed as part of an MSc Bioinformatics project.  
-The pipeline processes a **Delly-generated VCF**, performs **SV extraction**, **de novo detection**, **family‑based inference**, **BED-based annotation**, and **high‑quality visualisation**.
+The pipeline processes a **Delly-generated VCF**, performs **sample detection (child and parents)**, **parent detection (who father and who mother)**, **sex determination of the child**,  **SV extraction**, **de novo detection**, **family‑based inference**, **BED-based annotation**, and **high‑quality visualisation**.
 
 It combines shell scripting, AWK, Python, ANNOVAR database processing, and BEDTools-based comparisons.
 
