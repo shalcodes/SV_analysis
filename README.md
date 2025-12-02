@@ -1,112 +1,172 @@
-# Structural Variant (SV) Analysis Pipeline
-### *VCF → AWK Parsing → De Novo Detection → BED/ClinVar Annotation → Python Visualisation*
+# Structural Variant (SV) Analysis Pipeline  
+### *Hybrid Research + Developer Style — MSc Bioinformatics Project*
 
-This repository contains a complete, reproducible workflow for **structural variant (SV) analysis** from a **Delly-generated VCF**, including:  
-✔ SV extraction using AWK  
-✔ De novo variant detection  
-✔ ChrX-based parent inference & sex determination  
-✔ ANNOVAR-style `.avinput` generation  
-✔ Gene/exon/ClinVar annotation  
-✔ Summary statistics & high-quality plots
+This repository contains a complete, end‑to‑end structural variant (SV) analysis workflow developed as part of an MSc Bioinformatics project.  
+The pipeline processes a **Delly-generated VCF**, performs **SV extraction**, **de novo detection**, **family‑based inference**, **BED-based annotation**, and **high‑quality visualisation**.
+
+It combines shell scripting, AWK, Python, ANNOVAR database processing, and BEDTools-based comparisons.
 
 ---
 
-## 📁 Repository Structure
+# 🔬 Project Overview
+
+This project demonstrates how to:
+
+- Parse and process **structural variants** from a raw **Delly VCF**
+- Extract PASS‑filtered variants and compute SV statistics
+- Identify the **child sample** in a trio using Mendelian logic
+- Detect **de novo structural variants**
+- Infer **parents** and **child sex** using chrX heterozygosity
+- Convert ANNOVAR reference files into BED files for annotation
+- Annotate SVs using **gene**, **exon**, and **ClinVar SV** datasets
+- Generate publication‑quality **plots** and **summary reports**
+
+---
+
+# 📁 Repository Structure
 
 ```
-├── script.sh              # AWK-based parser for DELLY VCF
-├── annotate_sv.py         # annotates SVs using BED files
-├── annovar
-│   ├── humandb/             
-│          ├── clinvar_SV.txt
-│          └── hg38_refGene.txt
-├── pipeline.py            # main pipeline controller
-├── sv_plot.py             # custom plotting utilities
+├── pipeline.py                 # Main script (orchestrates full workflow)
+├── scripts/
+│   ├── script.sh               # AWK-based DELLY VCF parser (SV extraction)
+│   ├── annotate_sv.py          # Annotation using BEDTools & Python
+│   └── bed.sh                  # Convert ANNOVAR refGene + ClinVar SV → BED
 │
-├── bed_files/             # gene/exon/clinvar annotations
-├── example_vcf/           # optional
+├── data/
+│   ├── annovar/humandb/        # ANN OVAR reference files (not included here)
+│   ├── bed_files/              # Generated BEDs (hg38_refGene.bed, exons, ClinVar)
+│   └── DellyVariation.vcf      # Input VCF (example)
 │
 ├── output/
-│   ├── processed/             # parsed txt + avinput files
-│   ├── stats/                 # summary statistics
-│   └── figures/               # generated plots
+│   ├── processed/              # Generated .txt and .avinput files
+│   ├── stats/                  # Summary statistics
+│   └── figures/                # Plots
 │
 ├── requirements.txt
 └── README.md
 ```
 
+Users may delete all contents inside **output/** and regenerate them when running the workflow.
+
 ---
 
-## 🧬 Overview of the Workflow
+# 🧬 Methodology (High‑level)
 
-### **1. AWK Parsing of DELLY VCF**
-The pipeline begins with an AWK script that:
+The workflow contains **four main components**:
 
-- Applies **PASS** filtering  
-- Extracts **CHROM, POS, END, SVTYPE, REF/ALT, PE, SR**  
-- Computes **SV length**  
-- Extracts **genotypes** for a trio (HG00512, HG00513, HG00514)  
-- Performs **Mendelian violation checks** to identify the child  
-- Detects **de novo variants**  
-- Infers **mother/father** from chrX heterozygosity  
-- Infers **child sex**  
-- Generates:
+## **1. DELLY VCF Parsing (AWK — script.sh)**  
+The VCF file is processed using an AWK script:
 
+- Filters out non‑PASS variants  
+- Extracts: `CHROM`, `POS`, `END`, `SVTYPE`, `PE`, `SR`, `SV length`  
+- Extracts genotypes for three samples (HG00512, HG00513, HG00514)  
+- Detects the **child** using Mendelian rules  
+- Detects **de novo SVs**  
+- Computes:  
+  - Variant counts  
+  - SV type distribution  
+  - Chromosome enrichment  
+  - SNV vs SV ratio  
+  - Bi‑allelic vs multi‑allelic  
+- Infers parents using **chrX heterozygosity**  
+- Infers sex of child (presence/absence of chrX heterozygosity)  
+- Generates:  
 ```
-output/SV_summary.txt
-output/denovo_variants_precise.txt
-output/denovo_variants_imprecise.txt
-SV_summary.avinput
-denovo_variants_precise.avinput
-denovo_variants_imprecise.avinput
+output/SV_summary.txt  
+output/denovo_variants_precise.txt  
+output/denovo_variants_imprecise.txt  
+*.avinput  
 output/summary_stats.txt
 ```
 
 ---
 
-## **2. Annotation (Python + BEDTools)**
+## **2. Reference BED Generation (bed.sh)**  
+To enable annotation, the script converts reference datasets into BED format.
 
-`annotate_sv.py` annotates `.avinput` files with:
-- Gene overlaps  
-- Exonic vs intronic regions  
-- ClinVar pathogenicity labels  
-- Functional consequences  
+### **Datasets used**
 
-Outputs:  
+| Source | File | Purpose |
+|-------|------|---------|
+| **ANNOVAR human genome database** | `annovar/humandb/hg38_refGene.txt` | Generate gene BED + exon BED |
+| **NCBI ClinVar structural variant dataset** | `ClinVar_SV.txt` | Generate ClinVar SV BEDs |
+
+These files are not uploaded here due to size limits, but the scripts expect them to be present in:
+
 ```
-*_annotated.csv
+data/annovar/humandb/
+```
+
+### **Generated BED files**
+
+| BED File | Description |
+|---------|-------------|
+| `hg38_refGene.bed` | Gene-level regions |
+| `hg38_exons.bed` | Expanded exon-level regions |
+| `clinvar_SV.bed` | ClinVar SVs filtered by variant type |
+| `clinvar_SV_condition.bed` | ClinVar SVs annotated with condition + germline class |
+
+These are later used with BEDTools to annotate DELLY variants.
+
+---
+
+## **3. Annotation (Python — annotate_sv.py)**  
+The annotation script performs:
+
+- **BEDTools intersect** between AVINPUT files and BED files
+- Mapping SVs to:
+  - Gene names  
+  - Exon locations  
+  - Known pathogenic/benign ClinVar regions  
+- Generation of annotation tables (`*_annotated.csv`)
+
+---
+
+## **4. Visualisation (Python — sv_plot.py)**  
+The script generates high‑quality figures:
+
+- SV type barplots  
+- Chromosomal density maps  
+- PE/SR support analysis  
+- De novo vs inherited patterns  
+- Combination genotype matrix  
+- Summary figures for reports/publications  
+
+Saved under `output/figures/`.
+
+---
+
+# 📌 Input Files Used in This Project
+
+### **1. DellyVariation.vcf**
+A DELLY‑generated trio VCF used for demonstrating the entire workflow.
+
+### **2. ANNOVAR Reference Database Files**
+Downloaded from:  
+https://annovar.openbioinformatics.org/en/latest/
+
+Specifically used:  
+- `hg38_refGene.txt`
+
+### **3. ClinVar Structural Variant Dataset**
+Downloaded manually from NCBI:  
+https://www.ncbi.nlm.nih.gov/clinvar/?term=%22structural+variant%22
+
+Saved as:  
+```
+annovar/humandb/ClinVar_SV.txt
 ```
 
 ---
 
-## **3. Visualisation (`sv_plot.py`)**
+# 🚀 Running the Full Pipeline
 
-The pipeline generates plots for:
-
-- SV type distribution  
-- Chromosomal density  
-- Read support (PE/SR)  
-- De novo vs inherited SVs  
-- Allele structure (bi-allelic vs multi-allelic)  
-- SNV vs SV counts  
-
-Saved under:
-```
-output/figures/
-```
-
----
-
-## 🚀 Running the Pipeline
-
-### **1. Install Dependencies**
-
+## **1. Install Dependencies**
 ```
 pip install -r requirements.txt
 ```
 
-Or with conda:
-
+Optional (recommended):
 ```
 conda env create -f environment.yml
 conda activate sv-pipeline
@@ -114,56 +174,72 @@ conda activate sv-pipeline
 
 ---
 
-### **2. Ensure AWK is executable**
-
+## **2. Make Scripts Executable**
 ```
 chmod +x scripts/script.sh
+chmod +x scripts/bed.sh
 ```
 
 ---
 
-### **3. Run the Pipeline**
-
+## **3. Generate BED Reference Files**
 ```
-python src/pipeline.py
-```
-
----
-
-## 🔧 Requirements
-
-- Python 3.8+
-- AWK (GNU awk recommended)
-- BEDTools
-- ANNOVAR (optional)
-
-Python dependencies (in `requirements.txt`):  
-```
-pandas
-matplotlib
-seaborn
+bash scripts/bed.sh
 ```
 
 ---
 
-## 📊 Example Results
+## **4. Run the Main Pipeline**
+The entire workflow is controlled through:
 
-- Counts of SV types  
-- Genotype combination matrix  
-- De novo variant lists  
-- Chromosomal distribution plots  
-- Parent & sex inference  
-- ClinVar-annotated SV tables  
+```
+python pipeline.py
+```
+
+This will:
+
+- Parse VCF  
+- Generate summary + .avinput files  
+- Annotate variants  
+- Create visuals  
+- Save results into the **output/** directory  
 
 ---
 
-## 📜 Citation / Attribution
+# 🗂 Outputs Produced
 
-This project includes an AWK-based VCF parsing logic developed by **Shalini Majumder**.
+| Folder | Contents |
+|--------|----------|
+| `output/processed/` | Parsed SV tables, AVINPUT files |
+| `output/stats/` | Summary reports |
+| `output/figures/` | Plots |
+| root output | Denovo, Summary TXT files |
+
+Users may delete all contents inside this folder and regenerate them.
 
 ---
 
-## 📬 Contact
+# 🧠 Skills Demonstrated
 
-**Shalini Majumder**  
+- Next‑generation sequencing (NGS) analysis  
+- Structural variant interpretation  
+- AWK scripting  
+- Python workflow automation  
+- BEDTools‑based annotation  
+- Data cleaning of genomic reference databases  
+- Trio‑aware variant analysis  
+- Visualisation and report generation  
+
+---
+
+# 📜 License
+
+This repository is released under the **MIT License**.
+
+---
+
+# 👤 Contact  
+**Shalini Majumder**
+*sxm2220@student.bham.ac.uk / shalinimajumder24@gmail.com*
 *MSc Bioinformatics, University of Birmingham*
+
