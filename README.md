@@ -1,10 +1,16 @@
 # Structural Variant (SV) Analysis Pipeline  
 ### *MSc Bioinformatics Project*
 
-This repository contains a complete, end‑to‑end structural variant (SV) analysis workflow developed as part of an MSc Bioinformatics project.  
+This repository contains a complete, end‑to‑end structural variant (SV) analysis pipeline developed as part of an MSc Bioinformatics project. This can analyse a Delly VCF file of any family of trio (father, mother, child) for their structural variants. It can be applied to other Delly VCF files by tweaking the file and folder names a bit and changing the code. 
 The pipeline processes a **Delly-generated VCF**, performs **sample detection (child and parents)**, **parent detection (who father and who mother)**, **sex determination of the child**,  **SV extraction**, **de novo detection**, **family‑based inference**, **BED-based annotation**, and **high‑quality visualisation**.
 
 It combines shell scripting, AWK and Python scripts, ANNOVAR and ClinVar databases, and BEDTools-based comparisons.
+
+---
+
+<p align="center">
+  <img src="pipeline.png" width="900">
+</p>
 
 ---
 
@@ -287,14 +293,51 @@ This will:
 
 ---
 
-# 🗂 Outputs Produced
 
-| Folder | Contents |
-|--------|----------|
-| `output/processed/` | Parsed SV tables, AVINPUT files |
-| `output/stats/` | Summary reports |
-| `output/figures/` | Plots |
-| root output | Denovo, Summary TXT files |
+# 📊 Output Files Generated
+
+The pipeline automatically produces the following files:
+
+## 🧬 1. SV Extraction Outputs (from AWK script)
+These files are generated directly from the DELLY VCF:
+
+- `SV_summary.txt`  
+  Summary of all structural variants extracted from the VCF.
+  
+- `SV_summary.avinput`  
+  ANNOVER-compatible input file for downstream annotation.
+
+- `denovo_variants_precise.txt`  
+  De novo SVs detected using precise breakpoint-supporting reads.
+
+- `denovo_variants_imprecise.txt`  
+  De novo SVs including both precise and imprecise calls.
+
+- `denovo_variants_precise.avinput`  
+  `.avinput` representation of precise de novo SVs.
+
+- `denovo_variants_imprecise.avinput`  
+  `.avinput` representation of imprecise+precise de novo SVs.
+
+
+## 🧬 2. Annotation Outputs (inside `output/`)
+Generated after intersecting `.avinput` files with gene, exon, and ClinVar BED files:
+
+- `output/SV_summary_annotated.csv`  
+  All SVs annotated with gene, exon, and ClinVar information.
+
+- `output/denovo_variants_precise_annotated.csv`  
+  Annotated precise de novo SVs.
+
+- `output/denovo_variants_imprecise_annotated.csv`  
+  Annotated imprecise+precise de novo SVs.
+
+- `output/SV_summary_annotated_exonic.csv`  
+  SVs located in **protein-coding exons**.
+
+- `output/SV_summary_annotated_pathLink.csv`  
+  SVs linked to **pathogenic/clinical relevance** (from ClinVar).
+
 
 Users may delete all contents inside this folder and regenerate them.
 
