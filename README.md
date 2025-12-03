@@ -1,4 +1,4 @@
-# Structural Variant (SV) Analysis Pipeline  
+# DELLY_VCF_Trio Structural Variant (SV) Analysis Pipeline 
 
 
 This repository contains a complete, end‑to‑end structural variant (SV) analysis pipeline developed as part of an MSc Bioinformatics project. This can analyse a Delly VCF file of any family of trio (father, mother, child) for their structural variants. It can be applied to other Delly VCF files by tweaking the file and folder names a bit and changing the code. 
